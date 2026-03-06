@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Մարիա 10 — Հրավեր</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------- фон ---------- */
+
+body{
+margin:0;
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2), transparent 40%),
+linear-gradient(135deg,#a884d8,#f6a3b4);
+
+font-family:Montserrat;
+overflow:hidden;
+}
+
+/* ---------- карточка ---------- */
+
+.card{
+
+width:440px;
+padding:70px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,0.85);
+
+backdrop-filter:blur(14px);
+
+box-shadow:
+0 50px 120px rgba(0,0,0,0.25),
+0 10px 40px rgba(0,0,0,0.15);
+
+position:relative;
+z-index:10;
+
+text-align:center;
+
+animation:appear 1.4s ease;
+
+}
+
+/* золотая рамка */
+
+.card:before{
+
+content:"";
+
+position:absolute;
+
+top:-12px;
+left:-12px;
+right:-12px;
+bottom:-12px;
+
+border-radius:28px;
+
+background:linear-gradient(
+45deg,
+#f9e6a3,
+#e2b65c,
+#f9e6a3
+);
+
+z-index:-1;
+
+}
+
+/* ---------- анимация появления ---------- */
+
+.card > *{
+opacity:0;
+transform:translateY(20px);
+animation:fadeUp 1s forwards;
+}
+
+.card > *:nth-child(1){animation-delay:.2s}
+.card > *:nth-child(2){animation-delay:.4s}
+.card > *:nth-child(3){animation-delay:.6s}
+.card > *:nth-child(4){animation-delay:.8s}
+.card > *:nth-child(5){animation-delay:1s}
+.card > *:nth-child(6){animation-delay:1.2s}
+.card > *:nth-child(7){animation-delay:1.4s}
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes appear{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ---------- текст ---------- */
+
+.subtitle{
+
+font-size:18px;
+letter-spacing:3px;
+margin-bottom:10px;
+
+}
+
+h1{
+
+font-family:Playfair Display;
+font-size:48px;
+margin:10px 0;
+
+}
+
+.date{
+
+font-size:26px;
+margin-top:20px;
+
+}
+
+.time{
+
+font-size:20px;
+margin-top:5px;
+
+}
+
+.place{
+
+margin-top:35px;
+font-size:18px;
+line-height:1.6;
+
+}
+
+.countdown{
+
+margin-top:25px;
+font-size:16px;
+opacity:.7;
+
+}
+
+/* ---------- кнопка ---------- */
+
+.button{
+
+margin-top:40px;
+
+display:inline-block;
+
+padding:16px 36px;
+
+border-radius:40px;
+
+background:linear-gradient(45deg,#ff8dc7,#b87cff);
+
+color:white;
+
+font-weight:600;
+
+text-decoration:none;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.2),
+inset 0 1px 0 rgba(255,255,255,0.4);
+
+transition:all .3s;
+
+}
+
+.button:hover{
+
+transform:translateY(-3px) scale(1.05);
+
+box-shadow:
+0 20px 40px rgba(0,0,0,0.3);
+
+}
+
+/* ---------- sparkle эффект ---------- */
+
+.sparkle{
+
+position:absolute;
+
+width:6px;
+height:6px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.6;
+
+animation:float 8s infinite linear;
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+opacity:0;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-600px);
+opacity:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="subtitle">Ծննդյան տարեդարձ</div>
+
+<h1>Մարիա 10</h1>
+
+<div class="date">25 Մարտի 2026</div>
+
+<div class="time">17:30</div>
+
+<div class="place">
+Գյումրի<br>
+Ալեք Մանուկյան 8<br>
+Igit Restaurant
+</div>
+
+<div class="countdown" id="count"></div>
+
+<a class="button" href="https://yandex.com/maps/-/CPuRmMyj" target="_blank">
+📍 Բացել քարտեզը
+</a>
+
+</div>
+
+<script>
+
+/* ---------- таймер ---------- */
+
+const eventDate = new Date("March 25, 2026 17:30:00").getTime()
+
+setInterval(()=>{
+
+let now = new Date().getTime()
+let distance = eventDate - now
+
+let days = Math.floor(distance/(1000*60*60*24))
+let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+
+document.getElementById("count").innerHTML =
+"Մինչ տոնը մնացել է " + days + " օր " + hours + " ժամ"
+
+},1000)
+
+/* ---------- sparkle генерация ---------- */
+
+for(let i=0;i<25;i++){
+
+let s=document.createElement("div")
+
+s.className="sparkle"
+
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+s.style.animationDuration=(6+Math.random()*6)+"s"
+
+document.body.appendChild(s)
+
+}
+
+</script>
+
+</body>
+</html>
