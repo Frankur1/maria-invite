@@ -1,302 +1,209 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Մարիա 10 — Հրավեր</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Մարիա 10</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* ---------- фон ---------- */
 
 body{
 margin:0;
 height:100vh;
-
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2), transparent 40%),
-linear-gradient(135deg,#a884d8,#f6a3b4);
-
 font-family:Montserrat;
+background:url("phone.png");
+background-size:cover;
+background-position:center;
 overflow:hidden;
 }
 
-/* ---------- карточка ---------- */
+/* карточка */
 
 .card{
 
-width:440px;
-padding:70px;
+width:380px;
+padding:70px 50px;
 
-border-radius:25px;
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(10px);
 
-background:rgba(255,255,255,0.85);
-
-backdrop-filter:blur(14px);
-
-box-shadow:
-0 50px 120px rgba(0,0,0,0.25),
-0 10px 40px rgba(0,0,0,0.15);
-
-position:relative;
-z-index:10;
+border-radius:30px;
 
 text-align:center;
 
-animation:appear 1.4s ease;
+box-shadow:0 30px 80px rgba(0,0,0,0.25);
 
 }
 
-/* золотая рамка */
+/* текст */
 
-.card:before{
-
-content:"";
-
-position:absolute;
-
-top:-12px;
-left:-12px;
-right:-12px;
-bottom:-12px;
-
-border-radius:28px;
-
-background:linear-gradient(
-45deg,
-#f9e6a3,
-#e2b65c,
-#f9e6a3
-);
-
-z-index:-1;
-
+.invite{
+font-size:20px;
+margin-bottom:15px;
 }
-
-/* ---------- анимация появления ---------- */
-
-.card > *{
-opacity:0;
-transform:translateY(20px);
-animation:fadeUp 1s forwards;
-}
-
-.card > *:nth-child(1){animation-delay:.2s}
-.card > *:nth-child(2){animation-delay:.4s}
-.card > *:nth-child(3){animation-delay:.6s}
-.card > *:nth-child(4){animation-delay:.8s}
-.card > *:nth-child(5){animation-delay:1s}
-.card > *:nth-child(6){animation-delay:1.2s}
-.card > *:nth-child(7){animation-delay:1.4s}
-
-@keyframes fadeUp{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes appear{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* ---------- текст ---------- */
 
 .subtitle{
-
-font-size:18px;
-letter-spacing:3px;
+font-size:22px;
 margin-bottom:10px;
+}
+
+.title{
+font-size:56px;
+font-weight:600;
+margin-bottom:25px;
+}
+
+/* блок даты */
+
+.dateBlock{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+
+margin:20px 0 35px 0;
 
 }
 
-h1{
+.line{
 
-font-family:Playfair Display;
-font-size:48px;
-margin:10px 0;
+width:50px;
+height:2px;
+background:gold;
 
 }
 
 .date{
-
-font-size:26px;
-margin-top:20px;
-
+font-size:24px;
 }
 
 .time{
-
 font-size:20px;
-margin-top:5px;
-
+margin-top:4px;
 }
+
+/* место */
 
 .place{
-
-margin-top:35px;
-font-size:18px;
-line-height:1.6;
-
+font-size:24px;
+margin-bottom:10px;
 }
 
-.countdown{
-
-margin-top:25px;
-font-size:16px;
-opacity:.7;
-
+.address{
+font-size:22px;
+margin-bottom:5px;
 }
 
-/* ---------- кнопка ---------- */
-
-.button{
-
-margin-top:40px;
-
-display:inline-block;
-
-padding:16px 36px;
-
-border-radius:40px;
-
-background:linear-gradient(45deg,#ff8dc7,#b87cff);
-
-color:white;
-
-font-weight:600;
-
-text-decoration:none;
-
-box-shadow:
-0 10px 25px rgba(0,0,0,0.2),
-inset 0 1px 0 rgba(255,255,255,0.4);
-
-transition:all .3s;
-
+.restaurant{
+font-size:22px;
 }
 
-.button:hover{
+/* частицы */
 
-transform:translateY(-3px) scale(1.05);
+.particle{
 
-box-shadow:
-0 20px 40px rgba(0,0,0,0.3);
+position:fixed;
 
-}
+width:5px;
+height:5px;
 
-/* ---------- sparkle эффект ---------- */
-
-.sparkle{
-
-position:absolute;
-
-width:6px;
-height:6px;
-
-background:white;
+background:gold;
 
 border-radius:50%;
 
-opacity:.6;
+pointer-events:none;
 
-animation:float 8s infinite linear;
+opacity:0.8;
+
+animation:fall linear infinite;
 
 }
 
-@keyframes float{
+@keyframes fall{
 
 0%{
-transform:translateY(0);
+transform:translateY(-50px);
 opacity:0;
 }
 
-50%{
+10%{
 opacity:1;
 }
 
 100%{
-transform:translateY(-600px);
+transform:translateY(110vh);
 opacity:0;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="card">
 
-<div class="subtitle">Ծննդյան տարեդարձ</div>
-
-<h1>Մարիա 10</h1>
-
-<div class="date">25 Մարտի 2026</div>
-
-<div class="time">17:30</div>
-
-<div class="place">
-Գյումրի<br>
-Ալեք Մանուկյան 8<br>
-Igit Restaurant
+<div class="invite">
+Հրավիրվում եք Ձեզ հետ կիսելու այս օրը
 </div>
 
-<div class="countdown" id="count"></div>
+<div class="subtitle">
+Ծննդյան տարեդարձը
+</div>
 
-<a class="button" href="https://yandex.com/maps/-/CPuRmMyj" target="_blank">
-📍 Բացել քարտեզը
-</a>
+<div class="title">
+Մարիա 10
+</div>
+
+<div class="dateBlock">
+
+<div class="line"></div>
+
+<div>
+<div class="date">25 Մարտի 2026</div>
+<div class="time">17:30</div>
+</div>
+
+<div class="line"></div>
+
+</div>
+
+<div class="place">Գյումրի</div>
+
+<div class="address">Ալեք Մանուկյան 8</div>
+
+<div class="restaurant">Igit Restaurant</div>
 
 </div>
 
 <script>
 
-/* ---------- таймер ---------- */
+/* генерация частиц */
 
-const eventDate = new Date("March 25, 2026 17:30:00").getTime()
+for(let i=0;i<60;i++){
 
-setInterval(()=>{
+let p=document.createElement("div")
+p.className="particle"
 
-let now = new Date().getTime()
-let distance = eventDate - now
+p.style.left=Math.random()*window.innerWidth+"px"
 
-let days = Math.floor(distance/(1000*60*60*24))
-let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+p.style.top=Math.random()*window.innerHeight+"px"
 
-document.getElementById("count").innerHTML =
-"Մինչ տոնը մնացել է " + days + " օր " + hours + " ժամ"
+p.style.animationDuration=(6+Math.random()*8)+"s"
 
-},1000)
+p.style.animationDelay=Math.random()*6+"s"
 
-/* ---------- sparkle генерация ---------- */
-
-for(let i=0;i<25;i++){
-
-let s=document.createElement("div")
-
-s.className="sparkle"
-
-s.style.left=Math.random()*100+"vw"
-s.style.top=Math.random()*100+"vh"
-s.style.animationDuration=(6+Math.random()*6)+"s"
-
-document.body.appendChild(s)
+document.body.appendChild(p)
 
 }
 
